@@ -19,7 +19,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@headlessui/react": "^1.7.19",
+    "@headlessui/react": "^2.2.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.7.9",
