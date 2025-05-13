@@ -1,10 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import apiConfig from '../../../config/api.config'
+import siteConfig from '../../../config/site.config'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({
-    clientId: process.env.CLIENT_ID || '',
-    clientSecret: process.env.CLIENT_SECRET || '',
-    userPrincipalName: process.env.USER_PRINCIPAL_NAME || '',
-    baseDirectory: process.env.BASE_DIRECTORY || '/'
+    clientId: apiConfig.clientId,
+    clientSecret: apiConfig.obfuscatedClientSecret,
+    userPrincipalName: siteConfig.userPrincipalName,
+    baseDirectory: siteConfig.baseDirectory
   })
 }
