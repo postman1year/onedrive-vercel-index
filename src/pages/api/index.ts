@@ -10,9 +10,9 @@ import { compareHashedToken } from '../../utils/protectedRouteHandler'
 import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore'
 import { runCorsMiddleware } from './raw'
 
-const basePath = pathPosix.resolve('/', process.env.BASE_DIRECTORY || '/')
-const clientId = process.env.CLIENT_ID || ''
-const clientSecret = revealObfuscatedToken(process.env.CLIENT_SECRET || '')
+const basePath = pathPosix.resolve('/', siteConfig.baseDirectory)
+const clientId = apiConfig.clientId
+const clientSecret = revealObfuscatedToken(apiConfig.obfuscatedClientSecret)
 
 /**
  * Encode the path of the file relative to the base directory
