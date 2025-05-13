@@ -6,14 +6,77 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
 import { getAuthPersonInfo, requestTokenWithAuthCode, sendTokenToServer } from '../../utils/oAuthHandler'
 import { LoadingIcon } from '../../components/Loading'
+import { getAccessToken } from '../api'
 
-export default function OAuthStep3({ accessToken, expiryTime, refreshToken, error, description, errorUri }) {
+export async function getServerSideProps({ query, locale }) {
+  const { authCode } = query
+  const clientId = apiConfig.clientId;
+  const clientSecret = apiConfig.obfuscatedClientSecret;
+  const userPrincipalName = siteConfig.userPrincipalName;
+  
+  // Check if OAuth authentication has been completed
+  const existingAccessToken = await getAccessToken();
+  if (existingAccessToken) {
+  // If OAuth authentication has been completed, redirect to the homepage
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+  // If the OAuth authentication is not completed, continue the process of OAuth authentication
+  if (!authCode) {
+    return {
+      props: {
+        error: 'No auth code present',
+        description: 'Where is the auth code? Did you follow step 2 you silly donut?',
+        ...(await serverSideTranslations(locale, ['common'])),
+        clientId,
+        clientSecret,
+        userPrincipalName,
+      },
+    }
+  }
+  const config = { clientId, clientSecret, userPrincipalName };
+  const response = await requestTokenWithAuthCode(authCode, config)
+
+  // If error response, return invalid
+  if ('error' in response) {
+    return {
+      props: {
+        error: response.error,
+        description: response.errorDescription,
+        errorUri: response.errorUri,
+        ...(await serverSideTranslations(locale, ['common'])),
+      },
+    }
+  }
+
+  const { expiryTime, accessToken, refreshToken } = response
+
+  return {
+    props: {
+      clientId,
+      clientSecret,
+      userPrincipalName,
+      error: null,
+      expiryTime,
+      accessToken,
+      refreshToken,
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}
+
+export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime, refreshToken, error, description, errorUri }) {
   const router = useRouter()
   const [expiryTimeLeft, setExpiryTimeLeft] = useState(expiryTime)
 
@@ -55,7 +118,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
       )
       return
     }
-    if (data.userPrincipalName !== siteConfig.userPrincipalName) {
+    if (data.userPrincipalName !== userPrincipalName) {
       setButtonError(true)
       setButtonContent(
         <div>
@@ -221,45 +284,4 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
       <Footer />
     </div>
   )
-}
-
-export async function getServerSideProps({ query, locale }) {
-  const { authCode } = query
-
-  // Return if no auth code is present
-  if (!authCode) {
-    return {
-      props: {
-        error: 'No auth code present',
-        description: 'Where is the auth code? Did you follow step 2 you silly donut?',
-        ...(await serverSideTranslations(locale, ['common'])),
-      },
-    }
-  }
-
-  const response = await requestTokenWithAuthCode(authCode)
-
-  // If error response, return invalid
-  if ('error' in response) {
-    return {
-      props: {
-        error: response.error,
-        description: response.errorDescription,
-        errorUri: response.errorUri,
-        ...(await serverSideTranslations(locale, ['common'])),
-      },
-    }
-  }
-
-  const { expiryTime, accessToken, refreshToken } = response
-
-  return {
-    props: {
-      error: null,
-      expiryTime,
-      accessToken,
-      refreshToken,
-      ...(await serverSideTranslations(locale, ['common'])),
-    },
-  }
 }

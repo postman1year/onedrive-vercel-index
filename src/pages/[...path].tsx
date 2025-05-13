@@ -12,6 +12,7 @@ const SwitchLayout = dynamic(() => import('../components/SwitchLayout'), { ssr: 
 
 export default function Folders() {
   const { query } = useRouter()
+  const title = (query.path && Array.isArray(query.path) ? query.path[query.path.length - 1] : '')
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
