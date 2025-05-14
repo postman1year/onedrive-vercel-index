@@ -1,13 +1,12 @@
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import siteConfig from '../../config/site.config'
-const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
-const FileListing = dynamic(() => import('../components/FileListing'), { ssr: false })
-const Footer = dynamic(() => import('../components/Footer'), { ssr: false })
-const Breadcrumb = dynamic(() => import('../components/Breadcrumb'), { ssr: false })
-const SwitchLayout = dynamic(() => import('../components/SwitchLayout'), { ssr: false })
+import Navbar from '../components/Navbar'
+import FileListing from '../components/FileListing'
+import Footer from '../components/Footer'
+import Breadcrumb from '../components/Breadcrumb'
+import SwitchLayout from '../components/SwitchLayout'
 
 export default function Home() {
   return (
