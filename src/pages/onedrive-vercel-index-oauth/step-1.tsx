@@ -9,33 +9,8 @@ import apiConfig from '../../../config/api.config'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getAccessToken } from '../api'
 
-export async function getServerSideProps({ locale }) {
-  const clientId = apiConfig.clientId;
-  const clientSecret = apiConfig.obfuscatedClientSecret;
-  // Get accessToken using getAccessToken function
-  const accessToken = await getAccessToken();
-  // If the accessToken exists, redirect to the home page
-  if (accessToken) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
-  // If the accessToken does not exist, render the page normally
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'])),
-      clientId,
-      clientSecret,
-    },
-  }
-}
-
-export default function OAuthStep1({ clientId, clientSecret }) {
+export default function OAuthStep1() {
   const router = useRouter()
 
   const { t } = useTranslation()
@@ -98,7 +73,7 @@ export default function OAuthStep1({ clientId, clientSecret }) {
                       CLIENT_ID
                     </td>
                     <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
-                      <code className="font-mono text-sm">{clientId}</code>
+                      <code className="font-mono text-sm">{apiConfig.clientId}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
@@ -106,7 +81,7 @@ export default function OAuthStep1({ clientId, clientSecret }) {
                       CLIENT_SECRET*
                     </td>
                     <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
-                      <code className="font-mono text-sm">{clientSecret}</code>
+                      <code className="font-mono text-sm">{apiConfig.obfuscatedClientSecret}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
@@ -170,4 +145,12 @@ export default function OAuthStep1({ clientId, clientSecret }) {
       <Footer />
     </div>
   )
+}
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
 }
