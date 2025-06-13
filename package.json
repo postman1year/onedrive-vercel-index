@@ -2,7 +2,7 @@
   "name": "onedrive-vercel-index",
   "version": "5.0",
   "private": true,
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "pnpm@10.12.1",
   "engines": {
     "node": "22.x"
   },
@@ -60,11 +60,11 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.28.0",
-    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/postcss": "4.1.10",
     "@types/cors": "^2.8.19",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "22.15.30",
-    "@types/react": "19.1.6",
+    "@types/node": "22.15.31",
+    "@types/react": "19.1.8",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^19.1.6",
     "@types/react-syntax-highlighter": "^15.5.13",
@@ -75,10 +75,10 @@
     "i18next-parser": "^9.3.0",
     "next": "^15.3.3",
     "next-i18next": "^15.4.2",
-    "postcss": "^8.5.4",
+    "postcss": "8.5.5",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.12",
-    "tailwindcss": "^4.1.8",
+    "tailwindcss": "4.1.10",
     "typescript": "5.8.3"
   },
   "prettier": {
