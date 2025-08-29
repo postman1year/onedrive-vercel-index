@@ -199,7 +199,7 @@ export default function SearchModal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-white/80 dark:bg-gray-800/80" />
+            <div className="fixed inset-0 bg-white/80 dark:bg-gray-800/80" />
           </Transition.Child>
 
           <Transition.Child
