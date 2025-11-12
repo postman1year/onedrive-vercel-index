@@ -1,5 +1,6 @@
 import { FC, CSSProperties, ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
+import type { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -122,7 +123,7 @@ const MarkdownPreview: FC<{
             // ignoring it shoudld be safe enough.
             // @ts-ignore
             rehypePlugins={[rehypeKatex, rehypeRaw]}
-            components={customRenderer}
+            components={customRenderer as Components}
           >
             {content}
           </ReactMarkdown>
