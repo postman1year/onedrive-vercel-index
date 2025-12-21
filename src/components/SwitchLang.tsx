@@ -4,10 +4,10 @@ import { Menu, Transition } from '@headlessui/react'
 
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useCookies, withCookies } from 'react-cookie'
+import { setCookie } from 'cookies-next'
 
 // https://headlessui.dev/react/menu#integrating-with-next-js
-const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
+const CustomLink = ({ href, children, as, locale, ...props }): React.ReactNode => {
   return (
     <Link href={href} as={as} locale={locale} {...props}>
       {children}
@@ -30,8 +30,6 @@ const localeText = (locale: string): string => {
 
 const SwitchLang = () => {
   const { locales, pathname, query, asPath } = useRouter()
-
-  const [_, setCookie] = useCookies(['NEXT_LOCALE'])
 
   return (
     <div className="relative">
@@ -73,4 +71,4 @@ const SwitchLang = () => {
   )
 }
 
-export default withCookies(SwitchLang)
+export default SwitchLang

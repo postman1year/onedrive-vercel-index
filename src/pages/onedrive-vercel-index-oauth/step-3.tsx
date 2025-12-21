@@ -38,12 +38,12 @@ export async function getServerSideProps({ query, locale }) {
       props: {
         error: 'No auth code present',
         description: 'Where is the auth code? Did you follow step 2 you silly donut?',
-        ...(await serverSideTranslations(locale, ['common'])),
+        ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
         clientId,
         clientSecret,
         userPrincipalName,
       },
-    }
+    };
   }
   const config = { clientId, clientSecret, userPrincipalName };
   const response = await requestTokenWithAuthCode(authCode, config)
@@ -55,9 +55,9 @@ export async function getServerSideProps({ query, locale }) {
         error: response.error,
         description: response.errorDescription,
         errorUri: response.errorUri,
-        ...(await serverSideTranslations(locale, ['common'])),
+        ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
       },
-    }
+    };
   }
 
   const { expiryTime, accessToken, refreshToken } = response
@@ -71,9 +71,9 @@ export async function getServerSideProps({ query, locale }) {
       expiryTime,
       accessToken,
       refreshToken,
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
     },
-  }
+  };
 }
 
 export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime, refreshToken, error, description, errorUri }) {
