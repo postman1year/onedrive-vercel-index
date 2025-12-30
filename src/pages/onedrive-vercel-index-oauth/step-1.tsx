@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import siteConfig from '../../../config/site.config'
-import apiConfig from '../../../config/api.config'
+import * as siteConfig from '../../../config/site.config.js'
+import * as apiConfig from '../../../config/api.config.js'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getAccessToken } from '../api'
+import { getAccessToken } from '../api/index'
 
 export async function getServerSideProps({ locale }) {
   const clientId = apiConfig.clientId;
@@ -149,7 +149,7 @@ export default function OAuthStep1({ clientId, clientSecret }) {
               <Trans>
                 <FontAwesomeIcon icon="exclamation-triangle" className="mr-1 text-yellow-400" /> If you see anything
                 missing or incorrect, you need to reconfigure{' '}
-                <code className="font-mono text-xs">/config/api.config.js</code> and redeploy this instance.
+                <code className="font-mono text-xs">/config/api.config</code> and redeploy this instance.
               </Trans>
             </p>
 

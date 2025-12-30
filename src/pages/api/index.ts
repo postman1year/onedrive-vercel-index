@@ -3,8 +3,8 @@ import { posix as pathPosix } from 'path'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 
-import apiConfig from '../../../config/api.config'
-import siteConfig from '../../../config/site.config'
+import * as apiConfig from '../../../config/api.config.js'
+import * as siteConfig from '../../../config/site.config.js'
 import { revealObfuscatedToken } from '../../utils/oAuthHandler'
 import { compareHashedToken } from '../../utils/protectedRouteHandler'
 import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore'
@@ -109,8 +109,8 @@ export function getAuthTokenPath(path: string) {
  *
  * @param cleanPath Sanitised directory path, used for matching whether route is protected
  * @param accessToken OneDrive API access token
- * @param req Next.js request object
- * @param res Next.js response object
+ * @param req Next request object
+ * @param res Next response object
  */
 export async function checkAuthRoute(
   cleanPath: string,

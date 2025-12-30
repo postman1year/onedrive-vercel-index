@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-import siteConfig from '../../config/site.config'
+import * as siteConfig from '../../config/site.config.js'
 
 /**
  * Convert raw bits file/folder size into a human readable string

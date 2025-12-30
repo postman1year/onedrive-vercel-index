@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import siteConfig from '../../config/site.config'
+import * as siteConfig from '../../config/site.config.js'
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
 const FileListing = dynamic(() => import('../components/FileListing'), { ssr: false })
 const Footer = dynamic(() => import('../components/Footer'), { ssr: false })

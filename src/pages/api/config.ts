@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import apiConfig from '../../../config/api.config'
-import siteConfig from '../../../config/site.config'
+import * as apiConfig from '../../../config/api.config.js'
+import * as siteConfig from '../../../config/site.config.js'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({

@@ -1,13 +1,14 @@
-const { i18n } = require('./next-i18next.config')
+/** @type {import('next').NextConfig} */
+import i18nConfig from './next-i18next.config.js'
 
-module.exports = {
-  i18n,
-  reactStrictMode: true,
-  // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
+const nextConfig = {
+  i18n: i18nConfig.i18n,
   trailingSlash: true,
   generateBuildId: () => {
-    return process.env.GIT_COMMIT || 'development'
+    return process.env.GIT_COMMIT || "development"
   },
-  output: 'standalone',
+  output: "standalone",
   experimental: {}
 }
+
+export default nextConfig

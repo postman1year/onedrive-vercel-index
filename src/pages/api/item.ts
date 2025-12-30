@@ -1,8 +1,8 @@
 import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { getAccessToken } from '.'
-import apiConfig from '../../../config/api.config'
+import { getAccessToken } from './index'
+import * as apiConfig from '../../../config/api.config.js'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Get access token from storage

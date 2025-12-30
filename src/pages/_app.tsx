@@ -1,11 +1,10 @@
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
-import '../styles/globals.css'
-import '../styles/markdown-github.css'
+import '../styles/globals.css' with { type: 'css' }
+import '../styles/markdown-github.css' with { type: 'css' }
 
-// Require had to be used to prevent SSR failure in Next.js
+// Require had to be used to prevent SSR failure in Next
 // Related discussion: https://github.com/FortAwesome/Font-Awesome/issues/19348
-const { library, config } = require('@fortawesome/fontawesome-svg-core')
 config.autoAddCss = false
 
 import {
@@ -63,6 +62,7 @@ import * as Icons from '@fortawesome/free-brands-svg-icons'
 import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 import { appWithTranslation } from 'next-i18next'
+import { library, config } from "@fortawesome/fontawesome-svg-core";
 
 // import all brand icons with tree-shaking so all icons can be referenced in the app
 const iconList = Object.keys(Icons)

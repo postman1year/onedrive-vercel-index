@@ -15,7 +15,7 @@ import { LoadingIcon } from './Loading'
 
 import { getFileIcon } from '../utils/getFileIcon'
 import { fetcher } from '../utils/fetchWithSWR'
-import siteConfig from '../../config/site.config'
+import * as siteConfig from '../../config/site.config.js'
 
 /**
  * Extract the searched item's path in field 'parentReference' and convert it to the

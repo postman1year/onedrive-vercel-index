@@ -1,7 +1,7 @@
 import axios from 'axios'
 import CryptoJS from 'crypto-js'
 
-import apiConfig from '../../config/api.config'
+import * as apiConfig from '../../config/api.config.js'
 
 async function getConfig() {
   const res = await axios.get('/api/config')

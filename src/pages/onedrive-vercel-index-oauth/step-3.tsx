@@ -6,14 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import apiConfig from '../../../config/api.config'
-import siteConfig from '../../../config/site.config'
+import * as apiConfig from '../../../config/api.config.js'
+import * as siteConfig from '../../../config/site.config.js'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
 import { getAuthPersonInfo, requestTokenWithAuthCode, sendTokenToServer } from '../../utils/oAuthHandler'
 import { LoadingIcon } from '../../components/Loading'
-import { getAccessToken } from '../api'
+import { getAccessToken } from '../api/index'
 
 export async function getServerSideProps({ query, locale }) {
   const { authCode } = query
