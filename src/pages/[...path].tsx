@@ -2,6 +2,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import nextI18NextConfig from '../../next-i18next.config.js'; // Import it here too
 
 import * as siteConfig from '../../config/site.config.js'
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
@@ -39,7 +40,7 @@ export default function Folders() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, null, ['en', 'zh-CN', 'zh-TW'])),
     },
   };
 }
