@@ -5,9 +5,9 @@ const nextConfig = {
   i18n: i18nConfig.i18n,
   trailingSlash: true,
   generateBuildId: () => {
-    return process.env.GIT_COMMIT || "development"
+    return process.env.GIT_COMMIT || 'development'
   },
-  output: "standalone",
+  output: 'standalone',
   experimental: {}
 }
 
