@@ -36,7 +36,7 @@ export default function Home() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, null, ['en', 'zh-CN', 'zh-TW'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, ['en', 'zh-CN', 'zh-TW'])),
     },
   };
 }

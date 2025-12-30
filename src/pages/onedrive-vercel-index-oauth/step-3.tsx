@@ -40,7 +40,7 @@ export async function getServerSideProps({ query, locale }) {
       props: {
         error: 'No auth code present',
         description: 'Where is the auth code? Did you follow step 2 you silly donut?',
-        ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, null, ['en', 'zh-CN', 'zh-TW'])),
+        ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, ['en', 'zh-CN', 'zh-TW'])),
         clientId,
         clientSecret,
         userPrincipalName,
@@ -57,7 +57,7 @@ export async function getServerSideProps({ query, locale }) {
         error: response.error,
         description: response.errorDescription,
         errorUri: response.errorUri,
-        ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, null, ['en', 'zh-CN', 'zh-TW'])),
+        ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, ['en', 'zh-CN', 'zh-TW'])),
       },
     };
   }
@@ -73,7 +73,7 @@ export async function getServerSideProps({ query, locale }) {
       expiryTime,
       accessToken,
       refreshToken,
-      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, null, ['en', 'zh-CN', 'zh-TW'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, ['en', 'zh-CN', 'zh-TW'])),
     },
   };
 }
