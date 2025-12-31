@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import { getBaseUrl } from '../utils/getBaseUrl'
+import getBaseUrl from '../utils/getBaseUrl'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 import CustomEmbedLinkMenu from './CustomEmbedLinkMenu'
 

@@ -10,7 +10,7 @@ import { Plyr } from 'plyr-react'
 import { useAsync } from 'react-async-hook'
 import { useClipboard } from 'use-clipboard-copy'
 
-import { getBaseUrl } from '../../utils/getBaseUrl'
+import getBaseUrl from '../../utils/getBaseUrl'
 import { getExtension } from '../../utils/getFileIcon'
 import { getStoredToken } from '../../utils/protectedRouteHandler'
 

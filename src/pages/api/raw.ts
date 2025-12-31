@@ -11,7 +11,7 @@ import { encodePath, getAccessToken, checkAuthRoute } from './index'
 export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
   const cors = Cors({ methods: ['GET', 'HEAD'] })
   return new Promise((resolve, reject) => {
-    cors(req, res, result => {
+    cors(req, res, (result: unknown) => {
       if (result instanceof Error) {
         return reject(result)
       }

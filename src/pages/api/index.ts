@@ -11,7 +11,7 @@ import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore
 import { runCorsMiddleware } from './raw'
 
 const basePath = pathPosix.resolve('/', siteConfig.baseDirectory)
-const clientId = apiConfig.clientId
+const clientId = apiConfig.default
 const clientSecret = revealObfuscatedToken(apiConfig.obfuscatedClientSecret)
 
 /**

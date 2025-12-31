@@ -2,7 +2,6 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import nextI18NextConfig from '../../next-i18next.config.js'; // Import it here too
 
 import * as siteConfig from '../../config/site.config.js'
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
@@ -13,7 +12,6 @@ const SwitchLayout = dynamic(() => import('../components/SwitchLayout'), { ssr: 
 
 export default function Folders() {
   const { query } = useRouter()
-  const title = (query.path && Array.isArray(query.path) ? query.path[query.path.length - 1] : '')
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
@@ -40,7 +38,7 @@ export default function Folders() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, ['en', 'zh-CN', 'zh-TW'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
     },
   };
 }

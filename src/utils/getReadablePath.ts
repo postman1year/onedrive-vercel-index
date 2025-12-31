@@ -3,7 +3,7 @@
  * @param path Path. May be used as URL path or query value.
  * @returns Readable but still valid path
  */
-export function getReadablePath(path: string) {
+export function getReadablePath(path: string): string {
   path = path
     .split('/')
     .map(s => decodeURIComponent(s))

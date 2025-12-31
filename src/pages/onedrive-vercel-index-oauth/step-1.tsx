@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import nextI18NextConfig from '../../../next-i18next.config.js'; // Import it here too
 
 import * as siteConfig from '../../../config/site.config.js'
 import * as apiConfig from '../../../config/api.config.js'
@@ -13,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getAccessToken } from '../api/index'
 
 export async function getServerSideProps({ locale }) {
-  const clientId = apiConfig.clientId;
+  const clientId = apiConfig.default;
   const clientSecret = apiConfig.obfuscatedClientSecret;
   // Get accessToken using getAccessToken function
   const accessToken = await getAccessToken();
@@ -29,7 +28,7 @@ export async function getServerSideProps({ locale }) {
   // If the accessToken does not exist, render the page normally
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig, ['en', 'zh-CN', 'zh-TW'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
       clientId,
       clientSecret,
     },

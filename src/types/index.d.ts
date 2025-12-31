@@ -1,6 +1,7 @@
 // API response object for /api/?path=<path_to_file_or_folder>, this may return either a file or a folder.
 // Pagination is also declared here with the 'next' parameter.
-export type OdAPIResponse = { file?: OdFileObject; folder?: OdFolderObject; next?: string }
+type OdAPIResponse = { file?: OdFileObject; folder?: OdFolderObject; next?: string }
+export default OdAPIResponse;
 // A folder object returned from the OneDrive API. This contains the parameter 'value', which is an array of items
 // inside the folder. The items may also be either files or folders.
 export type OdFolderObject = {

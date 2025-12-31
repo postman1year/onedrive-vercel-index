@@ -6,7 +6,7 @@ import Preview from 'preview-office-docs'
 
 import DownloadButtonGroup from '../DownloadBtnGtoup'
 import { DownloadBtnContainer } from './Containers'
-import { getBaseUrl } from '../../utils/getBaseUrl'
+import getBaseUrl from '../../utils/getBaseUrl'
 import { getStoredToken } from '../../utils/protectedRouteHandler'
 
 const OfficePreview: FC<{ file: OdFileObject }> = ({ file }) => {

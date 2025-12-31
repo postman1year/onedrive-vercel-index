@@ -23,8 +23,8 @@ export default function useFileContent(
       // Using 'blob' as response type to get the response as a raw file blob, which is later parsed as a string.
       // Axios defaults response parsing to JSON, which causes issues when parsing JSON files.
       .get(url, { responseType: 'blob' })
-      .then(async res => setResponse(await res.data.text()))
-      .catch(e => setError(e.message))
+      .then(async (res: { data: { text: () => any; }; }) => setResponse(await res.data.text()))
+      .catch((e: { message: any; }) => setError(e.message))
       .finally(() => setValidating(false))
   }, [fetchUrl, path])
   return { response, error, validating }

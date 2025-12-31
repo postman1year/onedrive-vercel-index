@@ -7,7 +7,7 @@
   // Make sure this is exactly the same as the email address you use to sign into your Microsoft account.
   // You MUST put this in your Vercel's environment variable KEY is 'USER_PRINCIPAL_NAME' and VALUE is 'your Microsoft account'.
   // your email being exposed in public.
-  export const userPrincipalName = process.env.USER_PRINCIPAL_NAME || '';
+  export default process.env.USER_PRINCIPAL_NAME || '';
 
   // [OPTIONAL] This is the website icon to the left of the title inside the navigation bar. It should be placed under the
   // /public directory of your GitHub project (not your OneDrive folder!); and referenced here by its relative path to /public.
