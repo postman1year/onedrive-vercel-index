@@ -1,6 +1,6 @@
 import path from 'path'
 
-const config = {
+const nextI18NextConfig = {
   i18n: {
     localeDetection: false,
     defaultLocale: 'zh-TW',
@@ -14,4 +14,4 @@ const config = {
   contextSeparator: '——'
 }
 
-export default config
+export default nextI18NextConfig

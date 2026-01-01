@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import nextI18NextConfig from '../next-i18next.config.js';
 
 import { apiConfig } from '../../../config/api.config.js'
 import { siteConfig } from '../../../config/site.config.js'
@@ -38,7 +39,7 @@ export async function getServerSideProps({ query, locale }) {
       props: {
         error: 'No auth code present',
         description: 'Where is the auth code? Did you follow step 2 you silly donut?',
-        ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
+        ...(await serverSideTranslations(locale, ['common', 'footer'], nextI18NextConfig)),
         clientId,
         clientSecret,
         userPrincipalName,
