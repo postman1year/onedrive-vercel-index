@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useClipboard } from 'use-clipboard-copy'
 
-import getBaseUrl from '../utils/getBaseUrl'
+import { getBaseUrl } from '../utils/getBaseUrl'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 import { getReadablePath } from '../utils/getReadablePath'
 

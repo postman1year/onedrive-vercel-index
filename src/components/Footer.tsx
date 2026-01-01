@@ -1,8 +1,8 @@
-import * as config from '../../config/site.config.js'
+import { siteConfig } from '../../config/site.config.js'
 
 const createFooterMarkup = () => {
   return {
-    __html: config.footer,
+    __html: siteConfig.footer
   }
 }
 

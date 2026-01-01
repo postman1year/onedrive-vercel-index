@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import * as siteConfig from '../../../config/site.config.js'
+import { siteConfig } from '../../../config/site.config.js'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { LoadingIcon } from '../../components/Loading'
@@ -124,7 +124,7 @@ export default function OAuthStep2() {
               type="text"
               placeholder="http://localhost/?code=M.R3_BAY.c0..."
               value={oAuthRedirectedUrl}
-              onChange={(e: { target: { value: string } }) => {
+              onChange={e => {
                 setOAuthRedirectedUrl(e.target.value)
                 setAuthCode(extractAuthCodeFromRedirected(e.target.value))
               }}

@@ -4,14 +4,14 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import axios, { AxiosResponseHeaders } from 'axios'
 import Cors from 'cors'
 
-import { driveApi, cacheControlHeader } from '../../../config/api.config.js'
+import { apiConfig } from '../../../config/api.config.js'
 import { encodePath, getAccessToken, checkAuthRoute } from './index'
 
 // CORS middleware for raw links: https://nextjs.org/docs/api-routes/api-middlewares
 export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
   const cors = Cors({ methods: ['GET', 'HEAD'] })
   return new Promise((resolve, reject) => {
-    cors(req, res, (result: unknown) => {
+    cors(req, res, result => {
       if (result instanceof Error) {
         return reject(result)
       }
@@ -60,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   await runCorsMiddleware(req, res)
   try {
     // Handle response from OneDrive API
-    const requestUrl = `${driveApi}/root${encodePath(cleanPath)}`
+    const requestUrl = `${apiConfig.driveApi}/root${encodePath(cleanPath)}`
     const { data } = await axios.get(requestUrl, {
       headers: { Authorization: `Bearer ${accessToken}` },
       params: {
@@ -75,7 +75,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { headers, data: stream } = await axios.get(data['@microsoft.graph.downloadUrl'] as string, {
           responseType: 'stream',
         })
-        headers['Cache-Control'] = cacheControlHeader
+        headers['Cache-Control'] = apiConfig.cacheControlHeader
         // Send data stream as response
         res.writeHead(200, headers as AxiosResponseHeaders)
         stream.pipe(res)

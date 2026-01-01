@@ -1,66 +1,67 @@
 /**
- * This file contains the configuration used for customising the website; such as the folder to share;
- * the title; used Google fonts; site icons; contact info; etc.
+ * This file contains the configuration used for customising the website, such as the folder to share,
+ * the title, used Google fonts, site icons, contact info, etc.
  */
-
+export const siteConfig = {
   // This is what we use to identify who you are when you are initialising the website for the first time.
   // Make sure this is exactly the same as the email address you use to sign into your Microsoft account.
   // You MUST put this in your Vercel's environment variable KEY is 'USER_PRINCIPAL_NAME' and VALUE is 'your Microsoft account'.
   // your email being exposed in public.
-  export default process.env.USER_PRINCIPAL_NAME || '';
+  userPrincipalName: process.env.USER_PRINCIPAL_NAME || '',
 
   // [OPTIONAL] This is the website icon to the left of the title inside the navigation bar. It should be placed under the
-  // /public directory of your GitHub project (not your OneDrive folder!); and referenced here by its relative path to /public.
-  export const icon = '/icons/128.png';
+  // /public directory of your GitHub project (not your OneDrive folder!), and referenced here by its relative path to /public.
+  icon: '/icons/128.png',
 
   // Prefix for KV Storage
-  export const kvPrefix = process.env.KV_PREFIX || '';
+  kvPrefix: process.env.KV_PREFIX || '',
 
   // The name of your website. Present alongside your icon.
-  export const title = "Postman1year's OneDrive";
+  title: "Postman1year's OneDrive",
 
   // The folder that you are to share publicly with onedrive-vercel-index. Use '/' if you want to share your root folder.
-  export const baseDirectory = process.env.BASE_DIRECTORY || '/';
+  baseDirectory: process.env.BASE_DIRECTORY || '/',
 
-  // [OPTIONAL] This represents the maximum number of items that one directory lists; pagination supported.
+  // [OPTIONAL] This represents the maximum number of items that one directory lists, pagination supported.
   // Do note that this is limited up to 200 items by the upstream OneDrive API.
-  export const maxItems = 100;
+  maxItems: 100,
 
   // [OPTIONAL] We use Google Fonts natively for font customisations.
   // You can check and generate the required links and names at https://fonts.google.com.
   // googleFontSans - the sans serif font used in onedrive-vercel-index.
-  export const googleFontSans = 'Inter';
+  googleFontSans: 'Inter',
   // googleFontMono - the monospace font used in onedrive-vercel-index.
-  export const googleFontMono = 'Fira Mono';
+  googleFontMono: 'Fira Mono',
   // googleFontLinks -  an array of links for referencing the google font assets.
-  export const googleFontLinks = ['https://fonts.googleapis.com/css2?family=Fira+Mono&family=Inter:wght@400;500;700&display=swap'];
+  googleFontLinks: ['https://fonts.googleapis.com/css2?family=Fira+Mono&family=Inter:wght@400,500,700&display=swap'],
 
-  // [OPTIONAL] The footer component of your website. You can write HTML here; but you need to escape double
-  // quotes - changing " to \". You can write anything here; and if you like badges; generate some with https://shields.io
-  export const footer = 'Powered by <a href="https://github.com/postman1year/onedrive-vercel-index" target="_blank" rel="noopener noreferrer">onedrive-vercel-index</a>. Made with ❤ by postman1year.';
+  // [OPTIONAL] The footer component of your website. You can write HTML here, but you need to escape double
+  // quotes - changing " to \". You can write anything here, and if you like badges, generate some with https://shields.io
+  footer: ['Powered by <a href="https://github.com/postman1year/onedrive-vercel-index" target="_blank" rel="noopener noreferrer">onedrive-vercel-index</a>. Made with ❤ by postman1year.'],
 
   // [OPTIONAL] This is where you specify the folders that are password protected. It is an array of paths pointing to all
   // the directories in which you have .password set. Check the documentation for details.
-  export const protectedRoutes = [
+  protectedRoutes: [
     '/㊙️ Private',
     '/🎵 Music',
     '/🥁 Taiko/🎶 TJA/🎵 Real TJA',
-  ];
+  ],
 
   // [OPTIONAL] Use "" here if you want to remove this email address from the nav bar.
-  export const email = 'mailto:postman1year@gmail.com';
+  email: 'mailto:postman1year@gmail.com',
 
   // [OPTIONAL] This is an array of names and links for setting your social information and links.
-  // In the latest update; all brand icons inside font awesome is supported and the icon to render is based on the name
+  // In the latest update, all brand icons inside font awesome is supported and the icon to render is based on the name
   // you provide. See the documentation for details.
-  export const links = [
+  links: [
     {
-      name : 'GitHub',
-      link : 'https://github.com/postman1year/onedrive-vercel-index',
-    },
-  ];
+      name: 'GitHub',
+      link: 'https://github.com/postman1year/onedrive-vercel-index',
+    }
+  ],
 
   // This is a day.js-style datetime format string to format datetimes in the app. Ref to
   // https://day.js.org/docs/en/display/format for detailed specification. The default value is ISO 8601 full datetime
   // without timezone and replacing T with space.
-  export const datetimeFormat = 'YYYY-MM-DD HH:mm:ss';
+  datetimeFormat: 'YYYY-MM-DD HH:mm:ss',
+}

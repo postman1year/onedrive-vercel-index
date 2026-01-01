@@ -2,7 +2,7 @@
  * Extract the current web page's base url
  * @returns base url of the page
  */
-export default function getBaseUrl(): string {
+export function getBaseUrl(): string {
   if (typeof window !== 'undefined') {
     return window.location.origin
   }

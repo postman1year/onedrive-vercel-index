@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWRInfinite from 'swr/infinite'
 
-import type OdAPIResponse from '../types'
+import type { OdAPIResponse } from '../types'
 
 import { getStoredToken } from './protectedRouteHandler'
 

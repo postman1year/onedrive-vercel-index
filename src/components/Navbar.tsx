@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
-import * as siteConfig from '../../config/site.config.js'
+import { siteConfig } from '../../config/site.config.js'
 import SearchModal from './SearchModal'
 import SwitchLang from './SwitchLang'
 import useDeviceOS from '../utils/useDeviceOS'
@@ -45,7 +45,7 @@ const Navbar = () => {
   const { t } = useTranslation()
 
   const clearTokens = () => {
-    setIsOpen(false)
+    setIsOpen(false);
 
     siteConfig.protectedRoutes.forEach(r => {
       localStorage.removeItem(r)

@@ -6,7 +6,7 @@ import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { checkAuthRoute, encodePath, getAccessToken } from './index'
-import * as apiConfig from '../../../config/api.config.js'
+import { apiConfig } from '../../../config/api.config.js'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const accessToken = await getAccessToken()

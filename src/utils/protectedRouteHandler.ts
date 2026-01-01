@@ -1,5 +1,5 @@
 import sha256 from 'crypto-js/sha256'
-import * as siteConfig from '../../config/site.config.js'
+import { siteConfig } from '../../config/site.config.js'
 
 // Hash password token with SHA256
 function encryptToken(token: string): string {

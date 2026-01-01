@@ -1,5 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
-import * as siteConfig from '../../config/site.config.js'
+import { siteConfig } from '../../config/site.config.js'
 
 class MyDocument extends Document {
   render() {

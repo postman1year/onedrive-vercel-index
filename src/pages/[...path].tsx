@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import * as siteConfig from '../../config/site.config.js'
+import { siteConfig } from '../../config/site.config.js'
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false })
 const FileListing = dynamic(() => import('../components/FileListing'), { ssr: false })
 const Footer = dynamic(() => import('../components/Footer'), { ssr: false })
@@ -12,6 +12,7 @@ const SwitchLayout = dynamic(() => import('../components/SwitchLayout'), { ssr: 
 
 export default function Folders() {
   const { query } = useRouter()
+  const title = (query.path && Array.isArray(query.path) ? query.path[query.path.length - 1] : '')
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">

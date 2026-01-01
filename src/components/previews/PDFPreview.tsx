@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import getBaseUrl from '../../utils/getBaseUrl'
+import { getBaseUrl } from '../../utils/getBaseUrl'
 import { getStoredToken } from '../../utils/protectedRouteHandler'
 import DownloadButtonGroup from '../DownloadBtnGtoup'
 import { DownloadBtnContainer } from './Containers'

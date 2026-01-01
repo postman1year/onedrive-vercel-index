@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import * as apiConfig from '../../../config/api.config.js'
-import * as siteConfig from '../../../config/site.config.js'
+import { apiConfig } from '../../../config/api.config.js'
+import { siteConfig } from '../../../config/site.config.js'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
