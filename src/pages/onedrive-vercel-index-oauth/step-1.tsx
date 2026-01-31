@@ -28,11 +28,11 @@ export async function getServerSideProps({ locale }) {
   // If the accessToken does not exist, render the page normally
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
       clientId,
       clientSecret,
     },
-  }
+  };
 }
 
 export default function OAuthStep1({ clientId, clientSecret }) {
