@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useTranslation, Trans } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
@@ -15,7 +13,7 @@ import { getAuthPersonInfo, requestTokenWithAuthCode, sendTokenToServer } from '
 import { LoadingIcon } from '../../components/Loading'
 import { getAccessToken } from '../api'
 
-export async function getServerSideProps({ query, locale }) {
+export async function getServerSideProps({ query }) {
   const { authCode } = query
   const clientId = apiConfig.clientId;
   const clientSecret = apiConfig.obfuscatedClientSecret;
@@ -38,7 +36,6 @@ export async function getServerSideProps({ query, locale }) {
       props: {
         error: 'No auth code present',
         description: 'Where is the auth code? Did you follow step 2 you silly donut?',
-        ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
         clientId,
         clientSecret,
         userPrincipalName,
@@ -55,7 +52,6 @@ export async function getServerSideProps({ query, locale }) {
         error: response.error,
         description: response.errorDescription,
         errorUri: response.errorUri,
-        ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
       },
     };
   }
@@ -71,7 +67,6 @@ export async function getServerSideProps({ query, locale }) {
       expiryTime,
       accessToken,
       refreshToken,
-      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
     },
   };
 }
@@ -79,8 +74,6 @@ export async function getServerSideProps({ query, locale }) {
 export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime, refreshToken, error, description, errorUri }) {
   const router = useRouter()
   const [expiryTimeLeft, setExpiryTimeLeft] = useState(expiryTime)
-
-  const { t } = useTranslation()
 
   useEffect(() => {
     if (!expiryTimeLeft) return
@@ -94,7 +87,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
 
   const [buttonContent, setButtonContent] = useState(
     <div>
-      <span>{t('Store tokens')}</span> <FontAwesomeIcon icon="key" />
+      <span>{'Store tokens'}</span> <FontAwesomeIcon icon="key" />
     </div>
   )
   const [buttonError, setButtonError] = useState(false)
@@ -103,7 +96,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
     setButtonError(false)
     setButtonContent(
       <div>
-        <span>{t('Storing tokens')}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
+        <span>{'Storing tokens'}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
       </div>
     )
 
@@ -113,7 +106,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
       setButtonError(true)
       setButtonContent(
         <div>
-          <span>{t('Error validating identify, restart')}</span> <FontAwesomeIcon icon="exclamation-circle" />
+          <span>{'Error validating identify, restart'}</span> <FontAwesomeIcon icon="exclamation-circle" />
         </div>
       )
       return
@@ -122,7 +115,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
       setButtonError(true)
       setButtonContent(
         <div>
-          <span>{t('Do not pretend to be the site owner')}</span> <FontAwesomeIcon icon="exclamation-circle" />
+          <span>{'Do not pretend to be the site owner'}</span> <FontAwesomeIcon icon="exclamation-circle" />
         </div>
       )
       return
@@ -133,7 +126,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
         setButtonError(false)
         setButtonContent(
           <div>
-            <span>{t('Stored! Going home...')}</span> <FontAwesomeIcon icon="check" />
+            <span>{'Stored! Going home...'}</span> <FontAwesomeIcon icon="check" />
           </div>
         )
         setTimeout(() => {
@@ -144,7 +137,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
         setButtonError(true)
         setButtonContent(
           <div>
-            <span>{t('Error storing the token')}</span> <FontAwesomeIcon icon="exclamation-circle" />
+            <span>{'Error storing the token'}</span> <FontAwesomeIcon icon="exclamation-circle" />
           </div>
         )
       })
@@ -153,7 +146,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
       <Head>
-        <title>{t('OAuth Step 3 - {{title}}', { title: siteConfig.title })}</title>
+        <title>{`OAuth Step 3 - ${siteConfig.title}`}</title>
       </Head>
 
       <main className="flex w-full flex-1 flex-col bg-gray-50 dark:bg-gray-800">
@@ -170,31 +163,20 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                 priority
               />
             </div>
-            <h3 className="mb-4 text-center text-xl font-medium">
-              {t('Welcome to your new onedrive-vercel-index 🎉')}
-            </h3>
+            <h3 className="mb-4 text-center text-xl font-medium">Welcome to your new onedrive-vercel-index 🎉</h3>
 
-            <h3 className="mt-4 mb-2 text-lg font-medium">{t('Step 3/3: Get access and refresh tokens')}</h3>
+            <h3 className="mt-4 mb-2 text-lg font-medium">{'Step 3/3: Get access and refresh tokens'}</h3>
             {error ? (
               <div>
                 <p className="py-1 font-medium text-red-500">
                   <FontAwesomeIcon icon="exclamation-circle" className="mr-2" />
-                  <span>
-                    {t('Whoops, looks like we got a problem: {{error}}.', {
-                      // t('No auth code present')
-                      error: t(error),
-                    })}
-                  </span>
+                  <span>Whoops, looks like we got a problem: {error}.</span>
                 </p>
                 <p className="my-2 whitespace-pre-line rounded-sm border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm opacity-80 dark:bg-gray-800">
-                  {
-                    // t('Where is the auth code? Did you follow step 2 you silly donut?')
-                    t(description)
-                  }
+                  {description}
                 </p>
                 {errorUri && (
                   <p>
-                    <Trans>
                       Check out{' '}
                       <a
                         href={errorUri}
@@ -206,7 +188,6 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                         Microsoft's official explanation
                       </a>{' '}
                       on the error message.
-                    </Trans>
                   </p>
                 )}
                 <div className="mb-2 mt-6 text-right">
@@ -216,19 +197,19 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                       router.push('/onedrive-vercel-index-oauth/step-1')
                     }}
                   >
-                    <FontAwesomeIcon icon="arrow-left" /> <span>{t('Restart')}</span>
+                    <FontAwesomeIcon icon="arrow-left" /> <span>{'Restart'}</span>
                   </button>
                 </div>
               </div>
             ) : (
               <div>
-                <p className="py-1 font-medium">{t('Success! The API returned what we needed.')}</p>
+                <p className="py-1 font-medium">{'Success! The API returned what we needed.'}</p>
                 <ol className="py-1">
                   {accessToken && (
                     <li>
                       <FontAwesomeIcon icon={['far', 'check-circle']} className="text-green-500" />{' '}
                       <span>
-                        {t('Acquired access_token: ')}
+                        {'Acquired access_token: '}
                         <code className="font-mono text-sm opacity-80">{`${accessToken.substring(0, 60)}...`}</code>
                       </span>
                     </li>
@@ -237,7 +218,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                     <li>
                       <FontAwesomeIcon icon={['far', 'check-circle']} className="text-green-500" />{' '}
                       <span>
-                        {t('Acquired refresh_token: ')}
+                        {'Acquired refresh_token: '}
                         <code className="font-mono text-sm opacity-80">{`${refreshToken.substring(0, 60)}...`}</code>
                       </span>
                     </li>
@@ -245,22 +226,15 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                 </ol>
 
                 <p className="py-1 text-sm font-medium text-teal-500">
-                  <FontAwesomeIcon icon="exclamation-circle" className="mr-1" />{' '}
-                  {t('These tokens may take a few seconds to populate after you click the button below. ') +
-                    t('If you go back home and still see the welcome page telling you to re-authenticate, ') +
-                    t('revisit home and do a hard refresh.')}
+                  <FontAwesomeIcon icon="exclamation-circle" className="mr-1" /> These tokens may take a few seconds to
+                  populate after you click the button below. If you go back home and still see the welcome page telling
+                  you to re-authenticate, revisit home and do a hard refresh.
                 </p>
                 <p className="py-1">
-                  {t(
-                    'Final step, click the button below to store these tokens persistently before they expire after {{minutes}} minutes {{seconds}} seconds. ',
-                    {
-                      minutes: Math.floor(expiryTimeLeft / 60),
-                      seconds: expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60,
-                    }
-                  ) +
-                    t(
-                      "Don't worry, after storing them, onedrive-vercel-index will take care of token refreshes and updates after your site goes live."
-                    )}
+                  Final step, click the button below to store these tokens persistently before they expire after{' '}
+                  {Math.floor(expiryTimeLeft / 60)} minutes {expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60}{' '}
+                  seconds. Don&apos;t worry, after storing them, onedrive-vercel-index will take care of token refreshes
+                  and updates after your site goes live.
                 </p>
 
                 <div className="mb-2 mt-6 text-right">

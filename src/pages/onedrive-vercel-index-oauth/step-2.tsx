@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useTranslation, Trans } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import siteConfig from '../../../config/site.config'
 import Navbar from '../../components/Navbar'
@@ -28,7 +26,6 @@ export async function getServerSideProps({ locale }) {
   // If the accessToken does not exist, render the page normally
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'footer'], null, ['en', 'zh-CN', 'zh-TW'])),
     },
   };
 }
@@ -39,8 +36,6 @@ export default function OAuthStep2() {
   const [oAuthRedirectedUrl, setOAuthRedirectedUrl] = useState('')
   const [authCode, setAuthCode] = useState('')
   const [buttonLoading, setButtonLoading] = useState(false)
-
-  const { t } = useTranslation()
 
   // const oAuthUrl = generateAuthorisationUrl()
 
@@ -53,7 +48,7 @@ export default function OAuthStep2() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
       <Head>
-        <title>{t('OAuth Step 2 - {{title}}', { title: siteConfig.title })}</title>
+        <title>{`OAuth Step 2 - ${siteConfig.title}`}</title>
       </Head>
 
       <main className="flex w-full flex-1 flex-col bg-gray-50 dark:bg-gray-800">
@@ -70,17 +65,13 @@ export default function OAuthStep2() {
                 priority
               />
             </div>
-            <h3 className="mb-4 text-center text-xl font-medium">
-              {t('Welcome to your new onedrive-vercel-index 🎉')}
-            </h3>
+            <h3 className="mb-4 text-center text-xl font-medium">Welcome to your new onedrive-vercel-index 🎉</h3>
 
-            <h3 className="mt-4 mb-2 text-lg font-medium">{t('Step 2/3: Get authorisation code')}</h3>
+            <h3 className="mt-4 mb-2 text-lg font-medium">{'Step 2/3: Get authorisation code'}</h3>
 
             <p className="py-1 text-sm font-medium text-red-400">
-              <Trans>
                 <FontAwesomeIcon icon="exclamation-circle" className="mr-1" /> If you are not the owner of this website,
                 stop now, as continuing with this process may expose your personal files in OneDrive.
-              </Trans>
             </p>
 
             <div
@@ -100,14 +91,11 @@ export default function OAuthStep2() {
             </div>
 
             <p className="py-1">
-              <Trans>
-                The OAuth link for getting the authorisation code has been created. Click on the link above to get the{' '}
-                <b className="underline decoration-yellow-400 decoration-wavy">authorisation code</b>. Your browser will
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                open a new tab to Microsoft's account login page. After logging in and authenticating with your
-                Microsoft account, you will be redirected to a blank page on localhost. Paste{' '}
-                <b className="underline decoration-teal-500 decoration-wavy">the entire redirected URL</b> down below.
-              </Trans>
+              The OAuth link for getting the authorisation code has been created. Click on the link above to get the{' '}
+              <b className="underline decoration-yellow-400 decoration-wavy">authorisation code</b>. Your browser will
+              open a new tab to Microsoft&apos;s account login page. After logging in and authenticating with your
+              Microsoft account, you will be redirected to a blank page on localhost. Paste{' '}
+              <b className="underline decoration-teal-500 decoration-wavy">the entire redirected URL</b> down below.
             </p>
 
             <div className="my-4 mx-auto w-2/3 overflow-hidden rounded-sm">
@@ -130,15 +118,15 @@ export default function OAuthStep2() {
               }}
             />
 
-            <p className="py-1">{t('The authorisation code extracted is:')}</p>
+            <p className="py-1">{'The authorisation code extracted is:'}</p>
             <p className="my-2 overflow-hidden truncate rounded-sm border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm opacity-80 dark:bg-gray-800">
-              {authCode ?? <span className="animate-pulse">{t('Waiting for code...')}</span>}
+              {authCode ?? <span className="animate-pulse">{'Waiting for code...'}</span>}
             </p>
 
             <p>
               {authCode
-                ? t('✅ You can now proceed onto the next step: requesting your access token and refresh token.')
-                : t('❌ No valid code extracted.')}
+                ? '✅ You can now proceed onto the next step: requesting your access token and refresh token.'
+                : '❌ No valid code extracted.'}
             </p>
 
             <div className="mb-2 mt-6 text-right">
@@ -152,11 +140,11 @@ export default function OAuthStep2() {
               >
                 {buttonLoading ? (
                   <>
-                    <span>{t('Requesting tokens')}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
+                    <span>{'Requesting tokens'}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
                   </>
                 ) : (
                   <>
-                    <span>{t('Get tokens')}</span> <FontAwesomeIcon icon="arrow-right" />
+                    <span>{'Get tokens'}</span> <FontAwesomeIcon icon="arrow-right" />
                   </>
                 )}
               </button>

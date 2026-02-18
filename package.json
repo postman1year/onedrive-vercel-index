@@ -1,6 +1,6 @@
 {
   "name": "onedrive-vercel-index",
-  "version": "6.0",
+  "version": "7.0",
   "private": true,
   "packageManager": "pnpm@10.30.0",
   "engines": {
@@ -11,8 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier 'src/**/*.{js,ts,jsx,tsx}' --write",
-    "extract": "i18next"
+    "format": "prettier 'src/**/*.{js,ts,jsx,tsx}' --write"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
@@ -24,7 +23,6 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.13.5",
-    "cookies-next": "^6.1.1",
     "cors": "^2.8.6",
     "crypto-js": "^4.2.0",
     "csstype": "^3.2.3",
@@ -45,7 +43,6 @@
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
     "react-hotkeys-hook": "^5.2.4",
-    "react-i18next": "^16.5.4",
     "react-markdown": "^10.1.0",
     "react-reader": "^2.0.15",
     "react-syntax-highlighter": "^15.6.6",
@@ -72,10 +69,7 @@
     "eslint": "9.39.2",
     "eslint-config-next": "15.5.12",
     "eslint-config-prettier": "^10.1.8",
-    "i18next": "^25.8.10",
-    "i18next-parser": "^9.3.0",
-    "next": "15.5.12",
-    "next-i18next": "^15.4.3",
+    "next": "^15.5.12",
     "postcss": "8.5.6",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",

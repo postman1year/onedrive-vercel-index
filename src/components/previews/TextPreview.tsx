@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 
 import FourOhFour from '../FourOhFour'
 import Loading from '../Loading'
@@ -9,8 +8,6 @@ import { DownloadBtnContainer, PreviewContainer } from './Containers'
 
 const TextPreview = ({ file }) => {
   const { asPath } = useRouter()
-  const { t } = useTranslation()
-
   const { response: content, error, validating } = useFileContent(`/api/raw/?path=${asPath}`, asPath)
   if (error) {
     return (
@@ -24,7 +21,7 @@ const TextPreview = ({ file }) => {
     return (
       <>
         <PreviewContainer>
-          <Loading loadingText={t('Loading file content...')} />
+          <Loading loadingText={'Loading file content...'} />
         </PreviewContainer>
         <DownloadBtnContainer>
           <DownloadButtonGroup />
@@ -37,7 +34,7 @@ const TextPreview = ({ file }) => {
     return (
       <>
         <PreviewContainer>
-          <FourOhFour errorMsg={t('File is empty.')} />
+          <FourOhFour errorMsg={'File is empty.'} />
         </PreviewContainer>
         <DownloadBtnContainer>
           <DownloadButtonGroup />
