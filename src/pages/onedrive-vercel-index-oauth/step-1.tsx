@@ -9,7 +9,7 @@ import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getAccessToken } from '../api'
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps() {
   const clientId = apiConfig.clientId;
   const clientSecret = apiConfig.obfuscatedClientSecret;
   // Get accessToken using getAccessToken function

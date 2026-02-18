@@ -129,12 +129,7 @@ function SearchResultItemLoadRemote({ result }: { result: OdSearchResult[number]
   }
   if (!data) {
     return (
-      <SearchResultItemTemplate
-        driveItem={result}
-        driveItemPath={''}
-        itemDescription={'Loading ...'}
-        disabled={true}
-      />
+      <SearchResultItemTemplate driveItem={result} driveItemPath={''} itemDescription={'Loading ...'} disabled={true} />
     )
   }
 
@@ -216,7 +211,7 @@ export default function SearchModal({
                   type="text"
                   id="search-box"
                   className="w-full bg-transparent focus:outline-hidden focus-visible:outline-hidden"
-                  placeholder={'Search ...'}
+                  placeholder="Search ..."
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                 />
@@ -229,7 +224,7 @@ export default function SearchModal({
                 {results.loading && (
                   <div className="px-4 py-12 text-center text-sm font-medium">
                     <LoadingIcon className="svg-inline--fa mr-2 inline-block h-4 w-4 animate-spin" />
-                    <span>{'Loading ...'}</span>
+                    <span>Loading ...</span>
                   </div>
                 )}
                 {results.error && (

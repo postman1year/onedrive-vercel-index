@@ -11,7 +11,7 @@ import { LoadingIcon } from '../../components/Loading'
 import { extractAuthCodeFromRedirected, generateAuthorisationUrl } from '../../utils/oAuthHandler'
 import { getAccessToken } from '../api'
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps() {
   // Get accessToken using getAccessToken function
   const accessToken = await getAccessToken();
   // If the accessToken exists, redirect to the home page
@@ -118,9 +118,9 @@ export default function OAuthStep2() {
               }}
             />
 
-            <p className="py-1">{'The authorisation code extracted is:'}</p>
+            <p className="py-1">The authorisation code extracted is:</p>
             <p className="my-2 overflow-hidden truncate rounded-sm border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm opacity-80 dark:bg-gray-800">
-              {authCode ?? <span className="animate-pulse">{'Waiting for code...'}</span>}
+              {authCode ?? <span className="animate-pulse">Waiting for code...</span>}
             </p>
 
             <p>
@@ -140,11 +140,11 @@ export default function OAuthStep2() {
               >
                 {buttonLoading ? (
                   <>
-                    <span>{'Requesting tokens'}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
+                    <span>Requesting tokens</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
                   </>
                 ) : (
                   <>
-                    <span>{'Get tokens'}</span> <FontAwesomeIcon icon="arrow-right" />
+                    <span>Get tokens</span> <FontAwesomeIcon icon="arrow-right" />
                   </>
                 )}
               </button>

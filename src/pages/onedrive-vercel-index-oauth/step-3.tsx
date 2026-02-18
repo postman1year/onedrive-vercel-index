@@ -87,7 +87,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
 
   const [buttonContent, setButtonContent] = useState(
     <div>
-      <span>{'Store tokens'}</span> <FontAwesomeIcon icon="key" />
+      <span>Store tokens</span> <FontAwesomeIcon icon="key" />
     </div>
   )
   const [buttonError, setButtonError] = useState(false)
@@ -96,7 +96,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
     setButtonError(false)
     setButtonContent(
       <div>
-        <span>{'Storing tokens'}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
+        <span>Storing tokens</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
       </div>
     )
 
@@ -106,7 +106,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
       setButtonError(true)
       setButtonContent(
         <div>
-          <span>{'Error validating identify, restart'}</span> <FontAwesomeIcon icon="exclamation-circle" />
+          <span>Error validating identify, restart</span> <FontAwesomeIcon icon="exclamation-circle" />
         </div>
       )
       return
@@ -115,7 +115,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
       setButtonError(true)
       setButtonContent(
         <div>
-          <span>{'Do not pretend to be the site owner'}</span> <FontAwesomeIcon icon="exclamation-circle" />
+          <span>Do not pretend to be the site owner</span> <FontAwesomeIcon icon="exclamation-circle" />
         </div>
       )
       return
@@ -126,7 +126,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
         setButtonError(false)
         setButtonContent(
           <div>
-            <span>{'Stored! Going home...'}</span> <FontAwesomeIcon icon="check" />
+            <span>Stored! Going home...</span> <FontAwesomeIcon icon="check" />
           </div>
         )
         setTimeout(() => {
@@ -137,7 +137,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
         setButtonError(true)
         setButtonContent(
           <div>
-            <span>{'Error storing the token'}</span> <FontAwesomeIcon icon="exclamation-circle" />
+            <span>Error storing the token</span> <FontAwesomeIcon icon="exclamation-circle" />
           </div>
         )
       })
@@ -165,7 +165,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
             </div>
             <h3 className="mb-4 text-center text-xl font-medium">Welcome to your new onedrive-vercel-index 🎉</h3>
 
-            <h3 className="mt-4 mb-2 text-lg font-medium">{'Step 3/3: Get access and refresh tokens'}</h3>
+            <h3 className="mt-4 mb-2 text-lg font-medium">Step 3/3: Get access and refresh tokens</h3>
             {error ? (
               <div>
                 <p className="py-1 font-medium text-red-500">
@@ -197,19 +197,19 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                       router.push('/onedrive-vercel-index-oauth/step-1')
                     }}
                   >
-                    <FontAwesomeIcon icon="arrow-left" /> <span>{'Restart'}</span>
+                    <FontAwesomeIcon icon="arrow-left" /> <span>Restart</span>
                   </button>
                 </div>
               </div>
             ) : (
               <div>
-                <p className="py-1 font-medium">{'Success! The API returned what we needed.'}</p>
+                <p className="py-1 font-medium">Success! The API returned what we needed.</p>
                 <ol className="py-1">
                   {accessToken && (
                     <li>
                       <FontAwesomeIcon icon={['far', 'check-circle']} className="text-green-500" />{' '}
                       <span>
-                        {'Acquired access_token: '}
+                        Acquired access_token:{' '}
                         <code className="font-mono text-sm opacity-80">{`${accessToken.substring(0, 60)}...`}</code>
                       </span>
                     </li>
@@ -218,7 +218,7 @@ export default function OAuthStep3({ userPrincipalName, accessToken, expiryTime,
                     <li>
                       <FontAwesomeIcon icon={['far', 'check-circle']} className="text-green-500" />{' '}
                       <span>
-                        {'Acquired refresh_token: '}
+                        Acquired refresh_token:{' '}
                         <code className="font-mono text-sm opacity-80">{`${refreshToken.substring(0, 60)}...`}</code>
                       </span>
                     </li>

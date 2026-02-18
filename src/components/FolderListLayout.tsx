@@ -88,7 +88,7 @@ const FolderListLayout = ({
               <Downloading title={'Downloading selected files, refresh page to cancel'} style="p-1.5" />
             ) : (
               <button
-                title={'Download selected files'}
+                title="Download selected files"
                 className="cursor-pointer rounded-sm p-1.5 hover:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-400 disabled:hover:bg-white dark:hover:bg-gray-600 dark:disabled:text-gray-600 dark:disabled:hover:bg-gray-900"
                 disabled={totalSelected === 0}
                 onClick={handleSelectedDownload}
@@ -116,7 +116,7 @@ const FolderListLayout = ({
           {c.folder ? (
             <div className="hidden p-1.5 text-gray-700 dark:text-gray-400 md:flex">
               <span
-                title={'Copy folder permalink'}
+                title="Copy folder permalink"
                 className="cursor-pointer rounded-sm px-1.5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600"
                 onClick={() => {
                   clipboard.copy(`${getBaseUrl()}${`${path === '/' ? '' : path}/${encodeURIComponent(c.name)}`}`)
@@ -129,7 +129,7 @@ const FolderListLayout = ({
                 <Downloading title={'Downloading folder, refresh page to cancel'} style="px-1.5 py-1" />
               ) : (
                 <span
-                  title={'Download folder'}
+                  title="Download folder"
                   className="cursor-pointer rounded-sm px-1.5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600"
                   onClick={() => {
                     const p = `${path === '/' ? '' : path}/${encodeURIComponent(c.name)}`
@@ -143,7 +143,7 @@ const FolderListLayout = ({
           ) : (
             <div className="hidden p-1.5 text-gray-700 dark:text-gray-400 md:flex">
               <span
-                title={'Copy raw file permalink'}
+                title="Copy raw file permalink"
                 className="cursor-pointer rounded-sm px-1.5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600"
                 onClick={() => {
                   clipboard.copy(
@@ -155,7 +155,7 @@ const FolderListLayout = ({
                 <FontAwesomeIcon icon={['far', 'copy']} />
               </span>
               <a
-                title={'Download file'}
+                title="Download file"
                 className="cursor-pointer rounded-sm px-1.5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600"
                 href={`/api/raw/?path=${getItemPath(c.name)}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
               >
@@ -168,7 +168,7 @@ const FolderListLayout = ({
               <Checkbox
                 checked={selected[c.id] ? 2 : 0}
                 onChange={() => toggleItemSelected(c.id)}
-                title={'Select file'}
+                title="Select file"
               />
             )}
           </div>

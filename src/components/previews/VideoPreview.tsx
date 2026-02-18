@@ -128,7 +128,7 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
           <DownloadButton
             onClickCallback={() => window.open(videoUrl)}
             btnColor="blue"
-            btnText={'Download'}
+            btnText="Download"
             btnIcon="file-download"
           />
           <DownloadButton
@@ -137,7 +137,7 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
               toast.success('Copied direct link to clipboard.')
             }}
             btnColor="pink"
-            btnText={'Copy direct link'}
+            btnText="Copy direct link"
             btnIcon="copy"
           />
           <DownloadButton

@@ -27,7 +27,7 @@ const TextPreview = ({ file }) => {
   if (validating) {
     return (
       <PreviewContainer>
-        <Loading loadingText={'Loading file content...'} />
+        <Loading loadingText="Loading file content..." />
       </PreviewContainer>
     )
   }
@@ -35,7 +35,7 @@ const TextPreview = ({ file }) => {
   if (!content) {
     return (
       <PreviewContainer>
-        <FourOhFour errorMsg={'File is empty.'} />
+        <FourOhFour errorMsg="File is empty." />
       </PreviewContainer>
     )
   }
@@ -50,7 +50,7 @@ const TextPreview = ({ file }) => {
           <DownloadButton
             onClickCallback={() => window.open(parseDotUrl(content) ?? '')}
             btnColor="blue"
-            btnText={'Open URL'}
+            btnText="Open URL"
             btnIcon="external-link-alt"
             btnTitle={`Open URL ${parseDotUrl(content) || ''}`}
           />
