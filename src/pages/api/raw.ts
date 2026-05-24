@@ -77,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
         headers['Cache-Control'] = cacheControlHeader
         // Send data stream as response
-        res.writeHead(200, headers as AxiosResponseHeaders)
+        res.writeHead(200, headers as any)
         stream.pipe(res)
       } else {
         res.redirect(data['@microsoft.graph.downloadUrl'])

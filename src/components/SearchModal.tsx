@@ -83,7 +83,7 @@ function SearchResultItemTemplate({
   itemDescription,
   disabled,
 }: {
-  driveItem: OdSearchResult[number]
+  driveItem: any
   driveItemPath: string
   itemDescription: string
   disabled: boolean

@@ -94,7 +94,7 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
   const {
     loading,
     error,
-    result: mpegts,
+    result: mpegts
   } = useAsync(async () => {
     if (isFlv) {
       return (await import('mpegts.js')).default

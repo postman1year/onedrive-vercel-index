@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light-async'
 import { tomorrowNight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
 import 'katex/dist/katex.min.css'

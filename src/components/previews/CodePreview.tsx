@@ -2,7 +2,7 @@ import { FC } from 'react'
 import useSystemTheme from 'react-use-system-theme'
 import { useRouter } from 'next/router'
 
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light-async'
 import { tomorrowNightEighties, tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
 import useFileContent from '../../utils/fetchOnMount'

@@ -18,10 +18,11 @@ import siteConfig from '../../../config/site.config'
 function sanitiseQuery(query: string): string {
   const sanitisedQuery = query
     .replace(/'/g, "''")
-    .replace('<', ' &lt; ')
-    .replace('>', ' &gt; ')
-    .replace('?', ' ')
-    .replace('/', ' ')
+    .replace(/</g, ' &lt; ')
+    .replace(/>/g, ' &gt; ')
+    .replace(/\?/g, ' ')
+    .replace(/\//g, ' ')
+    .replace(/\\/g, ' ')
   return encodeURIComponent(sanitisedQuery)
 }
 
